@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "project_id": "renderweave",
+  "registration_status": "blocked_until_source_members_are_downloaded_and_verified",
+  "asset_role": "pretrained_3dgs_scene_parameters_not_dlss_weights",
+  "source_url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip",
+  "assets": [
+    {
+      "scene_id": "room",
+      "path": null,
+      "sha256": null,
+      "format": "graphdeco_ply",
+      "coordinate_space": "mip360_colmap_world",
+      "source_member": null
+    },
+    {
+      "scene_id": "bicycle",
+      "path": null,
+      "sha256": null,
+      "format": "graphdeco_ply",
+      "coordinate_space": "mip360_colmap_world",
+      "source_member": null
+    }
+  ]
+}

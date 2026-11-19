@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "project_id": "renderweave",
+  "dataset": "mip360",
+  "split_id": "mip360_scene_split_20261101_v1",
+  "assignment_unit": "scene",
+  "purpose": "Deployment and development; not the complete Stage 1 qualification set",
+  "development": ["bicycle", "room"],
+  "qualification": ["counter", "garden", "kitchen", "stump"],
+  "holdout": ["bonsai", "flowers", "treehill"],
+  "freeze_rule": "Do not reassign scenes after observing output quality; revise with a new split ID and decision record."
+}

@@ -1,0 +1,6 @@
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+find_dependency(Threads)
+include("${CMAKE_CURRENT_LIST_DIR}/RenderWeaveTargets.cmake")
+set(RenderWeave_NATIVE_NR_SDK_AVAILABLE @RW_BUILD_NATIVE_NR_SDK_EXPERIMENTAL@)
+check_required_components(RenderWeave)

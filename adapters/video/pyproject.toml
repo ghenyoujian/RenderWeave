@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "renderweave-video"
+version = "0.1.0"
+description = "Explicit-timeline FFmpeg host adapter for the RenderWeave native C ABI"
+requires-python = ">=3.11"
+dependencies = ["av==16.1.0", "numpy==2.3.5", "Pillow==12.0.0"]
+
+[project.scripts]
+rw-video = "renderweave_video.pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["renderweave_video*"]

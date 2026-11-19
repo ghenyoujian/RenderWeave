@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "renderweave"
+version = "0.1.0"
+description = "Thin C ABI bindings for the RenderWeave inference SDK"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+rw-doctor-python = "renderweave.doctor:main"
+rw-demo = "renderweave.demo:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["renderweave*"]

@@ -1,0 +1,191 @@
+{
+  "artifact_kind": "proposed_acceptance_contract",
+  "measurements_present": false,
+  "gates": [
+    {
+      "id": "G0",
+      "name": "原生图完整",
+      "claim": "每个特性的节点、参数、预处理、后处理、状态和内部依赖全部识别，无未知占位节点。",
+      "required_evidence": [
+        "完整图清单",
+        "参数映射",
+        "原生预后处理与状态合同"
+      ],
+      "on_failure": "blocked"
+    },
+    {
+      "id": "G1",
+      "name": "身份与输入",
+      "claim": "参数/拓扑哈希与schema一致；负面输入按预期全部拒绝。",
+      "required_evidence": [
+        "哈希报告",
+        "负面输入集",
+        "能力协商记录"
+      ],
+      "on_failure": "reject_before_device_submission"
+    },
+    {
+      "id": "G2",
+      "name": "数值算子",
+      "claim": "可枚举编码和纯布局变换全覆盖；浮点节点符合预注册精度合同。",
+      "required_evidence": [
+        "FP8编码边界",
+        "小矩阵",
+        "采样边界",
+        "融合差分"
+      ],
+      "on_failure": "locate_first_divergence"
+    },
+    {
+      "id": "G3",
+      "name": "整图与时序",
+      "claim": "至少20条独立序列且每条600帧，完整图、连续状态和边界尺寸通过原生对照。",
+      "required_evidence": [
+        "逐帧结果",
+        "状态摘要",
+        "原生参考",
+        "失败样本"
+      ],
+      "on_failure": "not_temporally_qualified"
+    },
+    {
+      "id": "G4",
+      "name": "并发与内存",
+      "claim": "1/2/4/8执行槽与交错/取消测试无状态串扰，容量和预算有界。",
+      "required_evidence": [
+        "调度轨迹",
+        "内存台账",
+        "物理完成事件",
+        "排空结果"
+      ],
+      "on_failure": "disable_failing_plan"
+    },
+    {
+      "id": "G5",
+      "name": "真实生态",
+      "claim": "计划适配器分别完成真实宿主输入、增强、返回与编码/呈现。",
+      "required_evidence": [
+        "端到端录制",
+        "SDK调用日志",
+        "输入guide合同",
+        "恢复测试"
+      ],
+      "on_failure": "adapter_not_qualified"
+    },
+    {
+      "id": "G6",
+      "name": "工业性能",
+      "claim": "在固定模型、精度、输出规格与热稳态下满足声明容量、尾延迟及观测预算。",
+      "required_evidence": [
+        "开放环负载",
+        "P50/P95/P99",
+        "有效吞吐",
+        "拒绝和超时",
+        "对照消融"
+      ],
+      "on_failure": "report_bottleneck_and_review_target"
+    },
+    {
+      "id": "G7",
+      "name": "异构语义",
+      "claim": "CUDA各架构及910B逐个通过相同网络语义和完整节点覆盖。",
+      "required_evidence": [
+        "逐设备原生比较",
+        "节点覆盖",
+        "驱动工具链锁",
+        "实机标识"
+      ],
+      "on_failure": "device_not_production_qualified"
+    },
+    {
+      "id": "G8",
+      "name": "生产可靠",
+      "claim": "持续负载、故障、恢复、epoch和资源回收全部满足长稳合同。",
+      "required_evidence": [
+        "长稳原始日志",
+        "故障注入",
+        "内存趋势",
+        "首个正确恢复输出"
+      ],
+      "on_failure": "retain_failure_and_regress"
+    },
+    {
+      "id": "G9",
+      "name": "可扩展集成",
+      "claim": "稳定C ABI、Python/Conda、模型及后端插件不依赖私有实现。",
+      "required_evidence": [
+        "ABI兼容",
+        "生命周期",
+        "私有插件",
+        "宿主扩展示例"
+      ],
+      "on_failure": "revise_public_contract"
+    },
+    {
+      "id": "G10",
+      "name": "可复现发布",
+      "claim": "独立验收者在干净环境重放H200、RTX兼容和910B路径，声明证据完整。",
+      "required_evidence": [
+        "依赖锁",
+        "SBOM",
+        "原始证据",
+        "安装升级回滚",
+        "独立复现"
+      ],
+      "on_failure": "no_production_release_label"
+    }
+  ],
+  "initial_numeric_targets": {
+    "NR": {
+      "mean_native_psnr_db_min": 45,
+      "mean_native_ssim_min": 0.995,
+      "sequence_p01_psnr_db_min": 40,
+      "any_frame_below_psnr_db_requires_blocking_investigation": 38
+    },
+    "other_features": "Pre-register per original model before collecting qualification outcomes; do not copy NR thresholds blindly."
+  },
+  "h200_initial_performance_target": {
+    "feature": "NR",
+    "width": 1920,
+    "height": 1080,
+    "temporal": true,
+    "resident_sessions": 32,
+    "active_sessions": 8,
+    "fps_per_active_session": 15,
+    "aggregate_valid_fps_min": 120,
+    "p99_e2e_ms_max": 66.7,
+    "same_quality_throughput_gain_goal_min": 1.25,
+    "baseline": "serial validated compatibility plan; identical model and inputs",
+    "single_stream_advanced_target_fps": 60,
+    "single_stream_advanced_p99_ms_max": 16.7,
+    "is_measured": false
+  },
+  "stability": {
+    "h200": {
+      "duration_hours_min": 72,
+      "valid_frames_min": 1000000
+    },
+    "other_declared_production_profiles": {
+      "duration_hours_min": 24,
+      "valid_frames_min": 100000
+    },
+    "unhandled_crashes_max": 0,
+    "unrecovered_oom_max": 0,
+    "cross_session_contamination_max": 0,
+    "stale_state_commits_max": 0,
+    "invalid_success_outputs_max": 0,
+    "fixed_load_memory_slope_mib_per_hour_max": 0.25,
+    "drained_residual_mib_max": 32
+  },
+  "observability": {
+    "default_throughput_overhead_pct_max": 2,
+    "default_p99_overhead_pct_max": 3
+  },
+  "claim_rules": [
+    "All metrics bind model/device/input/implementation identity.",
+    "NA is not zero and is not a pass.",
+    "Passthrough and alternative algorithms are not native success.",
+    "No threshold is relaxed after inspecting outcomes without an explicit target revision and new evaluation.",
+    "Finite zero-failure tests must report sample size and an uncertainty bound."
+  ]
+}

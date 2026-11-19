@@ -1,0 +1,9 @@
+Required Notice: Copyright 2026 the RenderWeave contributors.
+
+RenderWeave's own material is provided under PolyForm Noncommercial License 1.0.0.
+Existing third-party notices in the distributed files apply to those contributions.
+
+nlohmann/json is distributed under MIT. See third_party/nlohmann/LICENSE.MIT.
+MLX-DLSS material is distributed under Apache-2.0. See third_party/mlx_dlss/LICENSE and NOTICE.
+The NumPy ports retain the BSD-3-Clause notice in their source files.
+Other MIT-derived code retains its existing copyright and permission notices.

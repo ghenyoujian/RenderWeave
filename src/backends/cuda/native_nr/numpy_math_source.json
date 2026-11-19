@@ -1,0 +1,80 @@
+{
+  "project_id": "renderweave",
+  "scope": "proposed_unactivated_numpy_float32_math_source_port",
+  "upstream": {
+    "repository": "https://github.com/numpy/numpy",
+    "tag": "v2.3.5",
+    "commit": "c3d60fc8393f3ca3306b8ce8b6453d43737e3d90",
+    "metadata_url": "https://api.github.com/repos/numpy/numpy/commits/v2.3.5"
+  },
+  "license": "BSD-3-Clause; complete notice retained in numpy_math.hpp",
+  "sources": [
+    {
+      "path": "LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/LICENSE.txt",
+      "sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491",
+      "bytes": 1543
+    },
+    {
+      "path": "numpy/_core/src/umath/loops_trigonometric.dispatch.cpp",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/_core/src/umath/loops_trigonometric.dispatch.cpp",
+      "sha256": "97d84ca9abf30be79d971cb1aa2cc5eb1b9b79dd90460bb2fafcfc1f9495b5b1",
+      "bytes": 11518
+    },
+    {
+      "path": "numpy/_core/src/umath/npy_simd_data.h",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/_core/src/umath/npy_simd_data.h",
+      "sha256": "befa536863dadeddec0dff116dea5412e685000e2842a9a9907e8aee35bfea7c",
+      "bytes": 7826
+    },
+    {
+      "path": "numpy/_core/src/umath/loops_unary_fp.dispatch.c.src",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/_core/src/umath/loops_unary_fp.dispatch.c.src",
+      "sha256": "504df9a278921ea01a42b4c7690fd9c399217ded47589fd4968fdd9c96fa1929",
+      "bytes": 7620
+    },
+    {
+      "path": "numpy/_core/meson.build",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/_core/meson.build",
+      "sha256": "b470d6ad9d0eeb7419049458973d468356ae3fae42050b3fd66bb703a700efc1",
+      "bytes": 42869
+    },
+    {
+      "path": "numpy/_core/src/umath/loops_exponent_log.dispatch.c.src",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/_core/src/umath/loops_exponent_log.dispatch.c.src",
+      "sha256": "01320349e7e80c9bfd8e0e4fd0f24599b95da0bcf94f991e9989b97b2e7e7059",
+      "bytes": 51784
+    },
+    {
+      "path": "numpy/_core/src/common/simd/sse/math.h",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/_core/src/common/simd/sse/math.h",
+      "sha256": "89592fe0ec258f80b0a04c10db09cc876732b2aa3f34043287cbddcc8dc50764",
+      "bytes": 21644
+    },
+    {
+      "path": "numpy/lib/introspect.py",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/lib/introspect.py",
+      "sha256": "bbec207ccb98b7c188dc09d135d5ece23e30f5e353b1ace5aab6b34be3fb80a0",
+      "bytes": 2749
+    },
+    {
+      "path": "numpy/_core/include/numpy/npy_math.h",
+      "url": "https://raw.githubusercontent.com/numpy/numpy/c3d60fc8393f3ca3306b8ce8b6453d43737e3d90/numpy/_core/include/numpy/npy_math.h",
+      "sha256": "69e485b3ad106d63f2d6020fc870cfad813189f9b999b0c07233ff98b93f3c5d",
+      "bytes": 18858
+    }
+  ],
+  "qualification": {
+    "cpu_dispatch_recorded": false,
+    "numpy_float32_output_parity_verified": false,
+    "native_renderer_activated": false
+  },
+  "required_dispatch_evidence": "numpy.lib.introspect.opt_func_info(func_name=\"log|sin|cos|sqrt\", signature=\"float32\") and numpy.show_runtime(), FP rounding mode",
+  "domain": {
+    "log": "[2^-24,1] finite positive normal",
+    "sin_cos": "[0,2*pi_float32] including signed zero",
+    "sqrt": "finite nonnegative including signed zero"
+  },
+  "arithmetic": "IEEE binary32 separate add/sub/mul/div; std::fmaf only at exact upstream vector FMA sites; FE_TONEAREST; no fast math/reassociation",
+  "not_general_libm_replacement": true
+}
