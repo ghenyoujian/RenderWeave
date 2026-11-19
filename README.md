@@ -28,6 +28,8 @@ python tools/dev/deploy.py --detect
 python tools/dev/deploy.py
 ```
 
+安装目录的 `bin/rw-cuda-numeric-probe` 可以在本机直接检查 CUDA 的 FP8、矩阵和采样算术。Windows 下对应 `bin/rw-cuda-numeric-probe.exe`。
+
 SR K/LDR/2× 可用 `--sr-reconstruction PATH` 指定匹配的重建源码。模型加载通过公开 C ABI 或 `renderweave.NativeRuntime`、`renderweave.NativeSRRuntime`，使用明确传入的模型资产及身份。发行包包含源码、构建入口和文档。数据集、模型权重和厂商载体由使用者另行提供。
 
 ## 许可证
